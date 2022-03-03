@@ -17,7 +17,7 @@ global groupList
 groupList = []
 
 global NAMES
-NAMES = ["shoulder", "knee", "foot"]
+NAMES = ["hip", "knee", "foot"]
 
 def UIWindow():
     #make sure everything is clear and reset on start
@@ -32,7 +32,7 @@ def UIWindow():
     cmds.columnLayout(adjustableColumn=True)
     
     cmds.text(label="Autorig IK Leg \n", font="boldLabelFont", align='center')
-    cmds.text(label="  1. Click 'Add Joint' button and place the first sphere at the shoulder of the leg.\n", align='left')
+    cmds.text(label="  1. Click 'Add Joint' button and place the first sphere at the hip of the leg.\n", align='left')
     cmds.text(label="\tTip: Use the keyboard shortcut 'w' to go into translate mode.\n", align='left')
     cmds.text(label="  2. Click 'Add Joint' button and place the second sphere at the knee of the same leg.\n", align='left')
     cmds.text(label="  3. Click 'Add Joint' button and place the third sphere at the foot of the same leg.\n", align='left')
@@ -46,7 +46,7 @@ def UIWindow():
 def AddJointButton(self):
     global jointCounter
     if (jointCounter < 3):
-        #ex name: leg1_shoulder_placeholder, leg2_knee_placeholder
+        #ex name: leg1_hip_placeholder, leg2_knee_placeholder
         name = "leg" + str(legCounter) + "_" + NAMES[jointCounter] + "_placeholder" 
         s = cmds.polySphere(r=0.3, n=name)
         global sphereList
