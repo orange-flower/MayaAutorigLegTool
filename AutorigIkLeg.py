@@ -38,7 +38,7 @@ def UIWindow():
     cmds.text(label="  3. Click 'Add Joint' button and place the third sphere at the foot of the same leg.\n", align='left')
     cmds.button(label="Add Joint", command=AddJointButton)
     cmds.text(label="\n  4. Click 'Autorig Leg' once done with step #1-3.\n", align='left')
-    cmds.text(label="\tNote: You won't be able to create add more joints for another leg until you autorig the current leg.\n", align='left')
+    cmds.text(label="\tNote: You won't be able to create more joints for another leg until you autorig the current leg.\n", align='left')
     cmds.button(label="Autorig Leg", command=AutorigLegButton)
     cmds.text(label="\n  5. Repeat Steps #1-4 for each leg needed.\n", align='left')
     cmds.showWindow()
@@ -159,7 +159,7 @@ def AddConstraints():
     #put nurbs into padding groups
     nameIdx = 1
     for nurb in nurbList:
-        #ex name: leg1_shoulder_nurb-group
+        #ex name: leg1_knee_nurb-group
         name = "leg" + str(legCounter) + "_" + NAMES[nameIdx] + "_nurb-group"
         g = cmds.group(nurb, n=name)
         groupList.append(g)
@@ -187,8 +187,8 @@ def CreateIKHandle():
 def CleanUp():
     #group controls together
     groupName = "leg" + str(legCounter) + "_controls"
-    item1 = "leg" + str(legCounter) + "_knee_nurb_group" 
-    item2 = "leg" + str(legCounter) + "_foot_nurb_group" 
+    item1 = groupList[0] #"leg" + str(legCounter) + "_knee_nurb-group" 
+    item2 = groupList[1] #"leg" + str(legCounter) + "_foot_nurb-group" 
     item3 = "leg" + str(legCounter) + "_ikHandle"
     cmds.group(item1, item2, item3, n=groupName)
     
